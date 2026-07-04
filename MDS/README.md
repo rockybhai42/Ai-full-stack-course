@@ -11,3 +11,9 @@ and i learned about the differance between claude in website and claude in the V
 i understand that when i use the claude in the website it will give generic responses because we did't refer the file or exact code.
 
 after that i make the porfolio even better styling with the help of claude code .
+## day04
+we learn about javascript veriables, datatypes, array ,objects and explain with claude.ai.
+and we also learn about the functions in javascript and for loop, while loop, for of loop.
+then we learn about the contions in javascript.
+
+and we did some debuging with claude ai .
