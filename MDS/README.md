@@ -17,3 +17,7 @@ and we also learn about the functions in javascript and for loop, while loop, fo
 then we learn about the contions in javascript.
 
 and we did some debuging with claude ai .
+
+## day05:
+today we learn about the dom and how to manipulte dom,
+git and github version controls, how to create a branch and and how merge a main and the scendory branch , and how to deploy the pages in github .
