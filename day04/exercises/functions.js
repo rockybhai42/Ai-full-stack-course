@@ -53,3 +53,9 @@ async function main() {
 }
 
 main();
+
+
+
+
+// Task 1:   Temperature converter
+// Write celsiusToFahrenheit(c) using a function with a return statement. Test with 0, 100, and a negative number.
