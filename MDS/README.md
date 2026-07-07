@@ -21,3 +21,20 @@ and we did some debuging with claude ai .
 ## day05:
 today we learn about the dom and how to manipulte dom,
 git and github version controls, how to create a branch and and how merge a main and the scendory branch , and how to deploy the pages in github .
+
+## homework :
+i did a data driven page with my portfolio ,
+i can render the projects cards dynamicaly without change the html.
+
+## day06:
+
+today i learn about the concepts :
+Destructuring
+Spread & Rest
+ ES Modules
+Promises
+async/await
+ fetch API
+
+then we did some homework:
+i created a test blog site its fetch the posts as a json format, from the public api.

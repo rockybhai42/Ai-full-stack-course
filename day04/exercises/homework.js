@@ -56,19 +56,21 @@ function calculate(a, b, operator){
 // Given an array of numbers, write a loop that filters out only the even numbers into a new array, then logs its length.
 
 let numbers = [1,2,3,4,5,6,7,8,9,10];
-let evenNumbers = [];
 
+function filtterEvennumbers(numbers){
+    let evenNumbers = [];
 for(let i=0; i<numbers.length; i++){
     const val = numbers[i];
     if(typeof val === 'number' && Number.isFinite(val) &&val%2===0){
         evenNumbers.push(numbers[i]);
     }
 }
+return evenNumbers;
 
-console.log(evenNumbers.length);
-console.log(evenNumbers);
-console.log(numbers);
 
+}
+
+console.log(filtterEvennumbers(numbers));
 //
 
 //
