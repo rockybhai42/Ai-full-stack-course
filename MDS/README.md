@@ -38,3 +38,35 @@ async/await
 
 then we did some homework:
 i created a test blog site its fetch the posts as a json format, from the public api.
+## day07:(09-07-2026)
+i learn about the react :
+ * props
+ * components
+ * jsx
+ * vite
+  we learn that concepts depply , now i can understant the recat and i
+  can do some simple projects on react.
+
+
+
+
+## day09:(10-07-2026)
+  ## Topics Covered
+
+-   React state (`useState`)
+-   Props
+-   Callback props
+-   Lifting state up
+-   Form submission
+-   Fetch API
+-   Async/Await
+-   Error handling
+-   Conditional rendering
+-   JavaScript short-circuit evaluation
+-   React debugging
+-   Component design
+
+we learn the basics about the topics 
+i did a to do list project app for this lession 
+
+
