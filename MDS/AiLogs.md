@@ -1130,3 +1130,63 @@ Verified visually by starting the dev server and driving it with a local Playwri
 
 # what did i change:
 Added className props across Header.jsx, Addtask.jsx, Activetask.jsx, ComplededTask.jsx and Footer.jsx; wrapped App.jsx's JSX in `.app-shell`/`.app-card` containers; wrote App.css from scratch with the full glassmorphism/gradient design described above.
+
+
+## 13/07/2026 (class10) ---------------------------------------
+# first prompt:
+"I'm building a [movie search] app using [API]. Help me draft a one-page plan: core features, a list of components with their props, and how data flows between them." src: D:\react-class-project\movies-search-app
+
+# response:
+Asked which movie API to target (TMDb vs OMDb) — user picked OMDb. Drafted a one-page plan in chat: core features (search, filters, paginated results, detail view, favorites/watchlist, loading/error/empty states), OMDb endpoint notes (search `?s=`, detail `?i=`), a components/props table (App, SearchBar, ResultsGrid, MovieCard, Pagination, MovieDetailModal, FavoritesList, Loader/ErrorMessage/EmptyState), and a data-flow walkthrough, plus suggested custom hooks (useMovieSearch, useMovieDetails, useFavorites).
+
+# second prompt:
+convert into a md file and save the file into D:\react-class-project\movies-search-app folder
+
+# response:
+Created the movies-search-app folder and saved the plan as PLAN.md with the same content.
+
+# third prompt:
+create the project structure (folders and files) in D:\react-class-project\movies-search-app, don't write any code, ask if there are clarifying questions
+
+# response:
+Asked clarifying questions first: build tool (Vite/CRA/Next), JS vs TypeScript, styling approach, whether to include a tests folder. User chose Vite, JavaScript (.jsx), single global stylesheet, no tests. Discovered the folder already had a real Vite scaffold in place (package.json, vite.config.js, index.html, App.jsx, node_modules, etc. — all non-empty, pre-existing). Used `touch`/`mkdir -p` so existing files were untouched (touch doesn't erase content) while adding empty placeholder files/folders for the plan's components (SearchBar, ResultsGrid, MovieCard, Pagination, MovieDetailModal, FavoritesList, Loader, ErrorMessage, EmptyState), hooks (useMovieSearch, useMovieDetails, useFavorites) and api/omdb.js. Flagged the pre-existing scaffold and default App.jsx/main.jsx boilerplate to the user.
+
+# fourth prompt:
+yes (confirming: reset App.jsx/main.jsx to empty too)
+
+# response:
+Read the existing default Vite App.jsx/main.jsx content, then overwrote both with empty files to match the "no code yet" placeholder structure.
+
+# fifth prompt:
+"i have only one [day] to complete the project so simplify the project as much you can — basic needs: Search a title, see a results list, click one for a detail view. write plan.md file as your response"
+
+# response:
+Rewrote PLAN.md drastically simplified: 3 core features only (search, results list, detail view), dropped filters/pagination/favorites/persistence. Simplified components table to just App, SearchBar, ResultsList, MovieCard, MovieDetail, with a matching simplified data-flow section and optional useMovieSearch/useMovieDetails hooks.
+
+# sixth prompt:
+modify the project structure based on the plan.md file (D:\react-class-project\movies-search-app)
+
+# response:
+Renamed ResultsGrid → ResultsList and MovieDetailModal → MovieDetail; deleted Pagination, FavoritesList, Loader, ErrorMessage, EmptyState folders and the useFavorites.js hook so the folder structure matched the simplified plan exactly. Confirmed final structure and offered to also clean up unused default Vite assets (react/vite logos, hero.png).
+
+# seventh prompt:
+add the loader and error message and emptystate and pagination
+
+# response:
+Re-created empty Loader/Loader.jsx, ErrorMessage/ErrorMessage.jsx, EmptyState/EmptyState.jsx and Pagination/Pagination.jsx component folders/files. Noted PLAN.md still described the trimmed-down scope and asked whether to update it.
+
+# eighth prompt:
+yes
+
+# response:
+Updated PLAN.md to add pagination and loading/error/empty states back into core features, the components table (Pagination, Loader, ErrorMessage, EmptyState rows), and the data-flow section describing loading/error/empty handling and page-change behavior.
+
+# ninth prompt:
+ok lets guide me where i can start
+
+# response:
+Gave a step-by-step build order tied to the existing empty files: (1) get an OMDb API key into .env as VITE_OMDB_API_KEY, (2) build src/api/omdb.js first (searchMovies, getMovieDetails) and verify with console.log before any UI, (3) wire up App.jsx state (query, results, selectedId, page, totalResults, loading, error), (4) build SearchBar, (5) build MovieCard then ResultsList, (6) build MovieDetail, (7) add Loader/ErrorMessage/EmptyState as conditional renders, (8) add Pagination last. Offered to scaffold the omdb.js code first.
+
+# what did i change:
+No code written yet at this point — user had independently started implementing in the IDE (App.jsx now has real search state/handlers wired to components under src/components/ and src/services/omdbApi.js, main.jsx unchanged from the standard Vite entry point).
+

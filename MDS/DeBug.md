@@ -710,3 +710,221 @@ messages for both lists, mobile-responsive breakpoints). Added className props a
 Header.jsx, Addtask.jsx, Activetask.jsx, ComplededTask.jsx and Footer.jsx to support the
 new styles, and wrote the design into App.css. Verified visually with Playwright screenshots
 of the empty and populated states — no console errors.
+
+## debug the code (movie-search-app) date 12/07/2026
+
+
+# Movie Search App - Debug Summary
+
+## Project
+
+**Movie Search App (React + Vite + OMDb API)**
+
+---
+
+# Debug 1: Pagination Does Not Reset on a New Search
+
+## Problem
+
+When searching for a movie, navigating to a later page (for example, Page 5), and then searching for a different movie, the application continued requesting the previous page number instead of starting from Page 1.
+
+### Example
+
+1. Search **Batman**
+2. Navigate to **Page 5**
+3. Search **Spider-Man**
+
+The application requested:
+
+```text
+Spider-Man
+Page 5
+```
+
+Instead of:
+
+```text
+Spider-Man
+Page 1
+```
+
+This sometimes resulted in an empty results list even though movies existed.
+
+---
+
+## Root Cause
+
+The `page` state still contained the previous page number.
+
+```jsx
+const [page, setPage] = useState(5);
+```
+
+The search function reused this value instead of resetting it.
+
+---
+
+## Solution
+
+Reset the page before performing a new search.
+
+```jsx
+setPage(1);
+await fetchMovies(query, 1);
+```
+
+---
+
+## What I Learned
+
+Whenever a new search begins, related state such as pagination should be reset to its default value to avoid inconsistent application behavior.
+
+---
+
+# Debug 2: Broken Movie Posters
+
+## Problem
+
+Some movies returned by the OMDb API displayed broken image icons.
+
+---
+
+## Root Cause
+
+The OMDb API sometimes returns:
+
+```json
+{
+  "Poster": "N/A"
+}
+```
+
+Instead of a valid image URL.
+
+The application attempted to render:
+
+```jsx
+<img src={movie.Poster} alt={movie.Title} />
+```
+
+which produced an invalid image.
+
+---
+
+## Solution
+
+Display a placeholder image whenever the API returns `"N/A"`.
+
+```jsx
+<img
+  src={
+    movie.Poster !== "N/A"
+      ? movie.Poster
+      : "https://placehold.co/300x450?text=No+Image"
+  }
+  alt={movie.Title}
+/>
+```
+
+---
+
+## What I Learned
+
+Never assume an API always returns complete or valid data. Always validate API responses and provide fallbacks to improve the user experience.
+
+---
+
+# Debug 3: Multiple API Requests Triggered
+
+## Problem
+
+Clicking the **Search** button repeatedly while a request was still loading sent multiple API requests.
+
+---
+
+## Root Cause
+
+The Search button remained enabled during the API request.
+
+Every click submitted another request before the previous one completed.
+
+---
+
+## Solution
+
+Pass the loading state to the `SearchBar` component and disable the Search button while loading.
+
+### App.jsx
+
+```jsx
+<SearchBar
+  value={query}
+  onChange={handleChange}
+  onSubmit={handleSubmit}
+  loading={loading}
+/>
+```
+
+### SearchBar.jsx
+
+```jsx
+function SearchBar({
+  value,
+  onChange,
+  onSubmit,
+  loading
+}) {
+  return (
+    <form onSubmit={onSubmit}>
+      <input
+        value={value}
+        onChange={onChange}
+      />
+
+      <button
+        type="submit"
+        disabled={loading}
+      >
+        {loading ? "Searching..." : "Search"}
+      </button>
+    </form>
+  );
+}
+```
+
+### CSS
+
+```css
+.search-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+```
+
+---
+
+## What I Learned
+
+Disabling actions while asynchronous operations are in progress prevents duplicate requests, improves application performance, and provides a better user experience.
+
+---
+
+# Debugging Summary
+
+| Debug   | Problem                                | Root Cause                     | Solution                             |
+| ------- | -------------------------------------- | ------------------------------ | ------------------------------------ |
+| Debug 1 | Pagination stayed on the previous page | Page state was not reset       | Reset `page` to `1` before searching |
+| Debug 2 | Broken poster images                   | API returned `"N/A"`           | Display a placeholder image          |
+| Debug 3 | Multiple API requests                  | Search button remained enabled | Disable the button while loading     |
+
+---
+
+# Key Takeaways
+
+* Reset related state when starting a new operation.
+* Never assume external APIs always return complete or valid data.
+* Prevent duplicate user actions while asynchronous operations are running.
+* Build applications that are resilient to unexpected API responses.
+* Small improvements in error handling and user interaction significantly improve the overall user experience.
+
+These debugging exercises helped improve the application's reliability, user experience, and code quality while reinforcing important React concepts such as state management, conditional rendering, asynchronous operations, and defensive programming.

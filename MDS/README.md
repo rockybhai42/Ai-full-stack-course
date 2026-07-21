@@ -70,3 +70,18 @@ we learn the basics about the topics
 i did a to do list project app for this lession 
 
 
+## day10:(11-07-2026)
+ 
+ 
+
+## day12:(20-07-2026)
+i built a simple CRUD REST API for a task list using express.
+
+| Method | Path         | Description         | Body                          |
+| ------ | ------------ | -------------------- | ------------------------------ |
+| GET    | /tasks       | get all tasks         | -                               |
+| POST   | /tasks       | create a new task     | `{ "title": string, "done": boolean }` |
+| PUT    | /tasks/:id   | update a task by id   | `{ "title": string, "done": boolean }` |
+| DELETE | /tasks/:id   | delete a task by id   | -                               |
+
+## day13:(15-07-2026) ----------------
