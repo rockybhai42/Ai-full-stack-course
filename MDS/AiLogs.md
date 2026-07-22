@@ -1190,3 +1190,215 @@ Gave a step-by-step build order tied to the existing empty files: (1) get an OMD
 # what did i change:
 No code written yet at this point — user had independently started implementing in the IDE (App.jsx now has real search state/handlers wired to components under src/components/ and src/services/omdbApi.js, main.jsx unchanged from the standard Vite entry point).
 
+## 21/07/2026 (class16) ---------------------------------------
+# Favorite Cricket Players MERN Project - Learning Notes
+
+## Project Goal
+
+Build a full-stack MERN application where users can:
+
+-   Sign up
+-   Log in securely
+-   Store their favorite cricket players
+-   View only their own players
+-   Edit their own players
+-   Delete their own players
+
+------------------------------------------------------------------------
+
+# Technologies Used
+
+## Backend
+
+-   Node.js
+-   Express.js
+-   MongoDB
+-   Mongoose
+-   bcrypt
+-   JSON Web Token (JWT)
+-   dotenv
+-   cors
+-   nodemon
+
+## Frontend
+
+-   React
+-   Vite
+-   React Router DOM
+-   JavaScript
+-   CSS
+
+------------------------------------------------------------------------
+
+# Project Phases
+
+## Phase 1 - Backend Setup
+
+-   Create Express server
+-   Connect MongoDB
+-   Configure environment variables
+-   Test database connection
+
+## Phase 2 - User Authentication
+
+-   Signup
+-   Login
+-   Password hashing
+-   JWT generation
+
+## Phase 3 - User Model
+
+-   Name
+-   Email
+-   Password
+
+## Phase 4 - Authentication Middleware
+
+-   Read JWT
+-   Verify token
+-   Protect routes
+
+## Phase 5 - Player Model
+
+-   Player Name
+-   Runs
+-   Strike Rate
+-   International Status
+-   Owner ID
+
+## Phase 6 - Create Player
+
+-   POST API
+-   Save player
+-   Attach logged-in user as owner
+
+## Phase 7 - Read Players
+
+-   GET API
+-   Show only logged-in user's players
+
+## Phase 8 - React Frontend
+
+-   Login Page
+-   Signup Page
+-   Dashboard
+-   React Router
+
+## Phase 9 - Connect Frontend
+
+-   Signup
+-   Login
+-   Store JWT
+-   Fetch API
+
+## Phase 10 - Dashboard
+
+-   Player Form
+-   Player List
+-   Add Player
+-   Display Players
+
+## Phase 11 - Delete Player
+
+-   Delete button
+-   DELETE API
+-   Refresh list
+
+## Phase 12 - Update Player
+
+-   Edit button
+-   Update form
+-   PUT API
+
+## Phase 13 - Authorization
+
+-   Users can only edit their own players
+-   Users can only delete their own players
+
+## Phase 14 - Security
+
+-   bcrypt
+-   JWT
+-   .env
+-   .gitignore
+
+------------------------------------------------------------------------
+
+# Frontend Structure
+
+-   App
+-   Login
+-   Signup
+-   Dashboard
+-   PlayerForm
+-   PlayerList
+
+# Backend Structure
+
+-   Models
+-   Controllers
+-   Routes
+-   Middleware
+-   Config
+-   Server
+
+------------------------------------------------------------------------
+
+# CRUD Operations
+
+-   Create
+-   Read
+-   Update
+-   Delete
+
+------------------------------------------------------------------------
+
+# Authentication Flow
+
+Signup → Hash Password → Save User → Login → Verify Password → Generate
+JWT → Store Token → Access Protected Routes
+
+------------------------------------------------------------------------
+
+# Authorization Flow
+
+Login → Verify JWT → Get User ID → Compare Owner ID → Allow or Deny
+Access
+
+------------------------------------------------------------------------
+
+# Common Problems Solved
+
+-   MongoDB connection
+-   JWT errors
+-   Authorization header
+-   React Router issues
+-   ObjectId errors
+-   Enum validation
+-   Ownership checking
+-   React state updates
+-   Fetch API integration
+
+------------------------------------------------------------------------
+
+# Final Features
+
+-   User Registration
+-   User Login
+-   JWT Authentication
+-   Protected Routes
+-   Add Player
+-   View Players
+-   Update Player
+-   Delete Player
+-   User-specific Data
+-   MongoDB
+-   React Frontend
+-   Express Backend
+
+------------------------------------------------------------------------
+
+# Project Outcome
+
+Built a complete MERN CRUD application using React, Node.js, Express,
+MongoDB, JWT authentication, and owner-based authorization.

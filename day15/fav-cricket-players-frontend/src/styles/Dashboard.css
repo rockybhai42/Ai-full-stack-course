@@ -1,0 +1,36 @@
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f4f4;
+}
+
+.container{
+    width:800px;
+    margin:auto;
+    padding:20px;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:30px;
+}
+
+input,
+select{
+    padding:10px;
+    font-size:16px;
+}
+
+button{
+    padding:10px;
+    cursor:pointer;
+}
+
+.card{
+    background:white;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:8px;
+}

@@ -143,72 +143,79 @@ export const getPlayer = async (req,res)=>{
 
 
 // UPDATE PLAYER
-export const updatePlayer = async(req,res)=>{
+export const updatePlayer = async (req,res)=>{
 
-  try{
-
-
-    const player = await Player.findOneAndUpdate(
-
-      {
-        _id:req.params.id,
-
-        ownerId:req.user.id
-      },
+    try{
 
 
-      req.body,
+        const player = await Player.findById(req.params.id);
 
 
-      {
-        new:true,
-        runValidators:true
-      }
+        if(!player){
 
+            return res.status(404).json({
 
-    );
+                success:false,
+                message:"Player not found"
+
+            });
+
+        }
 
 
 
-    if(!player){
+        if(player.ownerId.toString() !== req.user.id){
 
-      return res.status(404).json({
+            return res.status(403).json({
 
-        success:false,
+                success:false,
+                message:"You cannot update this player"
 
-        message:"Player not found or unauthorized"
+            });
 
-      });
+        }
+
+
+
+        const updatedPlayer = await Player.findByIdAndUpdate(
+
+            req.params.id,
+
+            req.body,
+
+            {
+                new:true,
+                runValidators:true
+            }
+
+        );
+
+
+
+        res.status(200).json({
+
+            success:true,
+
+            message:"Player updated successfully",
+
+            player:updatedPlayer
+
+        });
+
+
 
     }
+    catch(error){
 
+        res.status(500).json({
 
+            success:false,
 
-    res.status(200).json({
+            message:error.message
 
-      success:true,
+        });
 
-      message:"Player updated successfully",
-
-      player
-
-    });
-
-
-
-  }catch(error){
-
-
-    res.status(500).json({
-
-      success:false,
-
-      message:error.message
-
-    });
-
-
-  }
+    }
 
 };
 

@@ -4,11 +4,14 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import authMiddleware from "./middleware/authMiddle.js";
 import playerRoutes from "./routes/playerRoutes.js";
+import cors from "cors";
 
 
 dotenv.config();
 
 const app = express();
+app.use(cors());
+
 const PORT = process.env.PORT ;
 
 

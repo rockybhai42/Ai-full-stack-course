@@ -85,3 +85,23 @@ i built a simple CRUD REST API for a task list using express.
 | DELETE | /tasks/:id   | delete a task by id   | -                               |
 
 ## day13:(15-07-2026) ----------------
+
+
+## day16:(21-07-2026)_______________________________________________________
+
+topics covered:
+
+🔗 CORS
+🔐 Auth tokens
+🐛 Integration debugging
+🎉 Full-stack app
+
+i made a wesite my fav criket players :
+
+mongodb 
+express
+react
+node  with all this .
+
+i learned about the cors and some debugs;
+i sort out some probloms with the auth tokens and mongo db ;
