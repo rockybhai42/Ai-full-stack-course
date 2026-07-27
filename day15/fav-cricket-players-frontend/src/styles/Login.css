@@ -1,0 +1,46 @@
+/* Login.jsx reuses the same .signup-container/.signup-card markup as Signup.jsx,
+   so this mirrors Signup.css exactly to keep both auth pages visually consistent. */
+
+.signup-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.signup-card {
+    width: 100%;
+    max-width: 400px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--glass-radius);
+    box-shadow: var(--glass-shadow);
+    padding: 36px 32px;
+}
+
+.signup-card h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.signup-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.signup-card p {
+    margin-top: 22px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.signup-card p a {
+    margin-left: 6px;
+    text-decoration: underline;
+}

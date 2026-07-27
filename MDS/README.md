@@ -105,3 +105,37 @@ node  with all this .
 
 i learned about the cors and some debugs;
 i sort out some probloms with the auth tokens and mongo db ;
+
+
+
+## day17:(23-07-2026)_______________________________________________________
+
+
+* DEBUGGING, CODE REVIEW &
+REFACTORING
+  🔍 Debugging process 
+  📜 Stack traces 
+  🧹 Refactoring
+  🤖 AI code review
+
+debugging process:
+1
+Reproduce — make the bug happen on demand, every time
+2
+Isolate — narrow it to the smallest piece of code that shows it
+3
+Hypothesize — form one specific, testable theory of the cause
+4
+Test — check that one theory, and only that one
+5
+Verify — confirm the fix works, and nothing else broke
+
+
+we should repeat the process untill find the bug:
+Hypothesize: "The ownership check compares task.userId to req.user instead of req.user.id — an
+object vs. a string."
+4
+Test: add one console.log(task.userId, req.user), run the exact reproduction, read the printed
+values.
+5
+Verify: fix the comparison, re-run the reproduction, then run yesterday's full test suite.

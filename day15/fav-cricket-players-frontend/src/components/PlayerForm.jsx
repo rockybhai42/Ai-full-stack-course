@@ -15,7 +15,7 @@ function PlayerForm({ fetchPlayers}){
 
         // Handle form submission logic here
         try{
-            const response = await fetch( 'http://localhost:5000/api/players', {
+            const response = await fetch( `${import.meta.env.VITE_API_URL}/api/players`, {
                 method : 'POST',
                 headers : {
                     'content-type' : 'application/json',
@@ -30,7 +30,7 @@ function PlayerForm({ fetchPlayers}){
                 });
                 const data = await response.json();
                 if(response.ok){
-                    window.alert(data.message);
+                   
                     fetchPlayers();
                     setPlayerName('');
                     setRuns('');
@@ -41,7 +41,7 @@ function PlayerForm({ fetchPlayers}){
                 }
 
         }catch(error){
-         alert("Error occurred while adding player:", error);
+         window.alert("Error occurred while adding player:", error);
         }
     }
 
@@ -49,6 +49,7 @@ function PlayerForm({ fetchPlayers}){
 
     return (
         <form onSubmit={handleSubmit}>
+            <h1>Add a New Player</h1>
 
             <input
                 type="text"

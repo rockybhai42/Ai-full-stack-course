@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 
-export const signup = async (req, res) => {
+export const signup = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
 
@@ -46,17 +46,14 @@ export const signup = async (req, res) => {
 
   } catch (error) {
 
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+    next(error)
 
   }
 };
 
 
 
-export const login = async (req, res) => {
+export const login = async (req, res, next) => {
   try {
 
     const { email, password } = req.body;
@@ -116,10 +113,9 @@ export const login = async (req, res) => {
 
   } catch (error) {
 
-    res.status(500).json({
-      success: false,
-      message: error.message
-    });
+   next(error)
+
+  
 
   }
 };

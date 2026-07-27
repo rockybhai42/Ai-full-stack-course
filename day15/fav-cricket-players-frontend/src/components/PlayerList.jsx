@@ -8,7 +8,7 @@ function PlayerList({ players, fetchPlayers }) {
     const token = localStorage.getItem("token");
     try {
       const response = await fetch(
-        `http://localhost:5000/api/players/${playerId}`,
+        `${import.meta.env.VITE_API_URL}/api/players/${playerId}`,
         {
           method: "DELETE",
           headers: {
@@ -32,7 +32,7 @@ function PlayerList({ players, fetchPlayers }) {
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-      `http://localhost:5000/api/players/${editingPlayer._id}`,
+      `${import.meta.env.VITE_API_URL}/api/players/${editingPlayer._id}`,
 
       {
         method: "PUT",
@@ -50,11 +50,12 @@ function PlayerList({ players, fetchPlayers }) {
     const data = await response.json();
 
     if (response.ok) {
-      alert(data.message);
+     
+      fetchPlayers();
 
       setEditingPlayer(null);
 
-      fetchPlayers();
+      
     }
   };
 
@@ -73,48 +74,51 @@ function PlayerList({ players, fetchPlayers }) {
           <p>International Status: {player.internationalStatus}</p>
 
           <button onClick={() => deletePlayer(player._id)}>Delete</button>
-          <button onClick={() => setEditingPlayer(player)}>Edit</button>
+          <button onClick={() => setEditingPlayer({ ...player })}>Edit</button>
         </div>
       ))}
 
       {editingPlayer && (
-        <div>
-          <input
-            value={editingPlayer.playerName}
-            onChange={(e) =>
-              setEditingPlayer({
-                ...editingPlayer,
+        <div className="modal-overlay">
+          <div className="modal">
+            <input
+              value={editingPlayer.playerName}
+              onChange={(e) =>
+                setEditingPlayer({
+                  ...editingPlayer,
 
-                playerName: e.target.value,
-              })
-            }
-          />
+                  playerName: e.target.value,
+                })
+              }
+            />
 
-          <input
-            value={editingPlayer.runs}
-            onChange={(e) =>
-              setEditingPlayer({
-                ...editingPlayer,
+            <input
+              value={editingPlayer.runs}
+              onChange={(e) =>
+                setEditingPlayer({
+                  ...editingPlayer,
 
-                runs: e.target.value,
-              })
-            }
-          />
-          <select
-            value={editingPlayer.internationalStatus}
-            onChange={(e) =>
-              setEditingPlayer({
-                ...editingPlayer,
-                internationalStatus: e.target.value,
-              })
-            }
-          >
-            <option value="Active">Active</option>
-            <option value="Retired">Retired</option>
-            <option value="Inactive">Inactive</option>
-          </select>
+                  runs: e.target.value,
+                })
+              }
+            />
+            <select
+              value={editingPlayer.internationalStatus}
+              onChange={(e) =>
+                setEditingPlayer({
+                  ...editingPlayer,
+                  internationalStatus: e.target.value,
+                })
+              }
+            >
+              <option value="Active">Active</option>
+              <option value="Retired">Retired</option>
+              <option value="Inactive">Inactive</option>
+            </select>
 
-          <button onClick={updatePlayer}>Update</button>
+            <button onClick={updatePlayer}>Update</button>
+            <button onClick={() => setEditingPlayer(null)}>Cancel</button>
+          </div>
         </div>
       )}
     </div>
