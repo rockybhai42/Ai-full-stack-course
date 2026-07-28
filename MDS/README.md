@@ -139,3 +139,48 @@ Test: add one console.log(task.userId, req.user), run the exact reproduction, re
 values.
 5
 Verify: fix the comparison, re-run the reproduction, then run yesterday's full test suite.
+
+
+## day18: (28-07-2026)---------------------
+
+day 18th class i learned about :
+
+▲ Vercel/Netlify
+🚂 Render/Railway 
+🔁 GitHub Actions
+🤖 Deploy troubleshooting
+
+deploy vercel:
+Push your React project to GitHub — Day 5's git push
+2
+Sign in to Vercel/Netlify, "Import Project," pick your repo
+3
+Confirm the build command (npm run build) and output folder (dist)
+4
+Add your VITE_API_URL in the host's environment variables settings
+5
+Deploy — get a real, live URL in under a minute
+
+deploy render:
+1
+Push your Express project to GitHub — a separate repo from the frontend
+2
+Sign in to Render/Railway, "New Web Service," pick your repo
+3
+Build command: npm install · Start command: node server.js
+4
+Add MONGODB_URI and JWT_SECRET in the host's environment settings
+5
+Deploy — get a real backend URL like your-api.onrender.com
+
+github actions :
+# .github/workflows/test.yml
+on: [push]
+jobs:
+test:
+runs-on: ubuntu-latest
+steps:
+- run: npm install
+- run: npx jest
+
+and we learend about the ai checlist for the project
