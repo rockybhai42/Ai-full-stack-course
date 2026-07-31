@@ -1,8 +1,6 @@
-# functions.js
+## debug the code (functions.js) date 04/07/2026
 
-## 04/07/2026
-
-### what i fixed :
+# what i fixed :
 
 Summary: Fixes Made in Final Version
 
@@ -66,11 +64,9 @@ Result
 This final version has no functional bugs. The only thing left is a minor style/performance note — recreating the readline interface on every prompt call — which works correctly but could optionally be optimized by reusing a single interface for the whole game.
 
 
-# homework.js
+## debug the code (homework.js) date 04/07/2026
 
-## 04/07/2026
-
-#### funtion01
+## funtion01
 
 
 function celsiusToFahrenheit(celsius){
@@ -78,11 +74,11 @@ function celsiusToFahrenheit(celsius){
 
 }
 
-### edge cases:
+# edge cases:
 
 "100" (string)212Silently coerces — may hide bugs upstreamnull32Dangerous — null becomes 0, giving a valid-looking but wrong answertrue33.8Dangerous — booleans coerce to 1/0undefined, "abc", {}NaNAt least fails loudly (sort of)No argumentNaNNo validation — a wrong call gives no error, just NaN
 
-### corrected code:
+# corrected code:
 
 function celsiusToFahrenheit(celsius){
     if(celsius !=='number'|| Number.isNaN(celsius)){
@@ -91,12 +87,12 @@ function celsiusToFahrenheit(celsius){
     return (celsius * 9/5) + 32;
 
 }
-### sloved  edge cases
+# sloved  edge cases
 typeof celsius !== 'number' — correctly filters out strings, null, undefined, booleans, objects, arrays, etc.
 Number.isNaN(celsius) — catches the case where celsius is literally NaN (which does have typeof === 'number', so the first check alone wouldn't catch it).
 The || means either condition throws — so only genuine, valid numbers pass through.
 
-#### funtion02:
+## funtion02:
 function calculate(a, b, operator){
     switch(operator){
         case '+':
@@ -117,7 +113,7 @@ function calculate(a, b, operator){
 
 }
 
-### edge cases:
+# edge cases:
 Key Risks Identified
 1. Inconsistent Return Type
 
@@ -168,7 +164,7 @@ Summary
 
 The calculator works correctly for basic arithmetic operations with valid numeric inputs. However, it lacks robust error handling and input validation. Improving these areas will make the function more reliable, predictable, and easier to maintain.
 
-### corrected code:
+# corrected code:
 function calculate(a, b, operator){
     if(typeof a !=='number'|| typeof b !=='number'|| Number.isNaN(a)|| Number.isNaN(b)){
         throw new Error("Invalid operands: a and b must be valid numberst");
@@ -194,7 +190,7 @@ function calculate(a, b, operator){
     }
 
 }
-### sloved edge cases:
+# sloved edge cases:
 DEBUG LOG SUMMARY — calculate() function
 
 [BUG-01] Type check compared value instead of type
@@ -235,11 +231,9 @@ DEBUG LOG SUMMARY — calculate() function
 STATUS: All functional bugs resolved. Function validates operand types/NaN,
 handles division by zero, and throws consistently for invalid operators.
 
-# class 06
+## debug the code (class 06) date 07/07/2026
 
-## 07/07/2026
-
-### edge cases:
+# edge cases:
 Looked at your fetchPosts/loadPosts code. Note upfront: fetchPosts() runs immediately at import time and any failure path returns undefined (the catch swallows the error, nothing is returned), so main.js then does posts.forEach(...) on undefined — that will throw and kill the whole module for several of these cases. Worth knowing before you test.
 
 Here are 8 to run manually:
@@ -262,7 +256,7 @@ Unusual payload content — override the response so one post has a very long ti
 
 For 3, 4, and 5, the fastest way to fake responses without a backend is DevTools → Network tab → find the request → right-click → "Override content" (Chrome) — lets you edit the response body/status locally and reload.
 
-### What changed and why, mapped to your 8 cases:
+# What changed and why, mapped to your 8 cases:
 
 
 
@@ -272,33 +266,31 @@ body.textContent = post.body ?? "" handles a null/undefined body without throwin
 Re-run through your test list (offline, bad URL, DevTools content override for empty/malformed/404, slow throttle) to confirm each one now shows a message instead of a blank or broken page.
 
 
-# class 06 — Weather App
-
-## 08/07/2026
+## debug the code (class 06) date 08/07/2026
 ----------------------------------------------
-### Debug Summary
+# Debug Summary
 
-#### Project
+## Project
 
 **RK Weather App**
 
 ---
 
-### Overview
+# Overview
 
 This document summarizes the bugs, edge cases, and improvements made while developing the weather application.
 
 ---
 
-### Bug Fixes
+# Bug Fixes
 
-#### 1. Prevent Page Refresh
+## 1. Prevent Page Refresh
 
-**Problem**
+### Problem
 
 Submitting the form refreshed the page, causing the weather data to disappear.
 
-**Solution**
+### Solution
 
 Used:
 
@@ -308,13 +300,13 @@ event.preventDefault();
 
 ---
 
-#### 2. Empty Input Validation
+## 2. Empty Input Validation
 
-**Problem**
+### Problem
 
 Users could submit an empty input.
 
-**Solution**
+### Solution
 
 Added validation before calling the API.
 
@@ -327,9 +319,9 @@ if (!city) {
 
 ---
 
-#### 3. Numeric Input Validation
+## 3. Numeric Input Validation
 
-**Problem**
+### Problem
 
 Users could enter only numbers.
 
@@ -339,7 +331,7 @@ Example:
 12345
 ```
 
-**Solution**
+### Solution
 
 ```javascript
 if (!isNaN(city)) {
@@ -350,13 +342,13 @@ if (!isNaN(city)) {
 
 ---
 
-#### 4. Loading State
+## 4. Loading State
 
-**Problem**
+### Problem
 
 There was no visual feedback while waiting for the API response.
 
-**Solution**
+### Solution
 
 Display a loading message before making the request.
 
@@ -367,13 +359,13 @@ weatherSection.innerHTML =
 
 ---
 
-#### 5. Prevent Multiple Requests
+## 5. Prevent Multiple Requests
 
-**Problem**
+### Problem
 
 Clicking the Search button multiple times created multiple API requests.
 
-**Solution**
+### Solution
 
 Disable the button while fetching data.
 
@@ -389,13 +381,13 @@ button.disabled = false;
 
 ---
 
-#### 6. Handle Missing Weather Data
+## 6. Handle Missing Weather Data
 
-**Problem**
+### Problem
 
 If the API returned an unexpected response, the application could fail.
 
-**Solution**
+### Solution
 
 ```javascript
 if (!weatherData || !weatherData.current_weather) {
@@ -407,13 +399,13 @@ if (!weatherData || !weatherData.current_weather) {
 
 ---
 
-#### 7. Clear Previous Search Results
+## 7. Clear Previous Search Results
 
-**Problem**
+### Problem
 
 Every search added another weather card.
 
-**Solution**
+### Solution
 
 Clear the weather card before rendering new data.
 
@@ -423,13 +415,13 @@ weatherSection.innerHTML = "";
 
 ---
 
-#### 8. Error Handling
+## 8. Error Handling
 
-**Problem**
+### Problem
 
 Network failures or API errors caused the application to fail without useful feedback.
 
-**Solution**
+### Solution
 
 Display a user-friendly error message.
 
@@ -444,13 +436,13 @@ catch (error) {
 
 ---
 
-#### 9. Input Reset
+## 9. Input Reset
 
-**Problem**
+### Problem
 
 The city input still contained the previous search.
 
-**Solution**
+### Solution
 
 Clear the input after every request.
 
@@ -460,7 +452,7 @@ cityInput.value = "";
 
 ---
 
-### Weather Emoji Feature
+# Weather Emoji Feature
 
 A helper function maps Open-Meteo weather codes to emojis.
 
@@ -484,7 +476,7 @@ This provides a simple visual representation of the current weather.
 
 ---
 
-### Error Scenarios Tested
+# Error Scenarios Tested
 
 * Empty city input
 * Numeric city input
@@ -498,7 +490,7 @@ This provides a simple visual representation of the current weather.
 
 ---
 
-### Current Features
+# Current Features
 
 * Search weather by city
 * Convert city name to latitude and longitude
@@ -518,7 +510,7 @@ This provides a simple visual representation of the current weather.
 
 ---
 
-### Future Improvements
+# Future Improvements
 
 * Display humidity
 * Display "Feels Like" temperature
@@ -532,7 +524,7 @@ This provides a simple visual representation of the current weather.
 
 ---
 
-### Lessons Learned
+# Lessons Learned
 
 During this project I learned how to:
 
@@ -548,36 +540,34 @@ During this project I learned how to:
 _____________________________________________________________________________
 ______________________________________________________________________________
 
-# Weather App Debug Summary
+# July 10, 2026 --- Weather App Debug Summary
 
-## 10/07/2026
-
-### Overview
+## Overview
 
 Today I continued building my React Weather App and focused on component
 communication, API integration, conditional rendering, and debugging.
 
-### Problems Solved
+## Problems Solved
 
-#### 1. Child → Parent Communication
+### 1. Child → Parent Communication
 
 -   Passed the searched city from `SearchBox` to `App.jsx`.
 -   Used a callback prop (`onSearch`) to lift data to the parent
     component.
 
-#### 2. Form Submission
+### 2. Form Submission
 
 -   Used `onSubmit` with `event.preventDefault()` to prevent page
     refresh.
 -   Retrieved the latest city value from React state.
 
-#### 3. Weather API Integration
+### 3. Weather API Integration
 
 -   Used the Open-Meteo Geocoding API to convert a city name into
     latitude and longitude.
 -   Used those coordinates to fetch current weather data.
 
-#### 4. Error Handling
+### 4. Error Handling
 
 -   Added `try...catch...finally`.
 -   Displayed an error message when:
@@ -586,14 +576,14 @@ communication, API integration, conditional rendering, and debugging.
     -   the response status was not OK.
 -   Managed loading state correctly with `finally`.
 
-#### 5. Conditional Rendering
+### 5. Conditional Rendering
 
 Learned when to use: - `condition && <Component />` to render a
 component only when a condition is true. - Why React ignores `false`,
 `null`, and `undefined` during rendering. - How conditional rendering
 prevents components from accessing undefined data.
 
-#### 6. Debugging
+### 6. Debugging
 
 Identified and fixed a runtime error:
 
@@ -620,19 +610,19 @@ function ErrorMessage(props) {
 }
 ```
 
-#### 7. React Best Practices
+### 7. React Best Practices
 
 -   Avoid storing derived values (such as weather emoji) in state.
 -   Compute derived values directly from props.
 -   Prefer camelCase callback prop names like `onSearch`.
 
-#### 8. Additional Improvements
+### 8. Additional Improvements
 
 -   Clear previous weather data before starting a new search.
 -   Validate city lookup results before accessing `results[0]`.
 -   Keep loading, error, and weather states independent.
 
-### Key Concepts Reinforced
+## Key Concepts Reinforced
 
 -   `useState`
 -   Props
@@ -646,7 +636,7 @@ function ErrorMessage(props) {
 -   Debugging with browser console
 -   React re-rendering
 
-### Next Steps
+## Next Steps
 
 -   Display city and country names.
 -   Show humidity, wind direction, and weather description.
@@ -655,11 +645,9 @@ function ErrorMessage(props) {
 -   Add input validation and search history.
 
 
-# to-do-list-app
+## debug the code (to-do-list-app) date 10/07/2026
 
-## 10/07/2026
-
-### what i fixed :
+# what i fixed :
 
 Bug reported: the Completed Tasks component didn't seem to show the list when clicking the "finshed" button in the Active Tasks component.
 Project: D:\react-class-project\to-do-list-app
@@ -685,7 +673,7 @@ Task A had genuinely moved into the second list. So this was not a state/logic b
 
 Real cause: App.css was empty (1 line) and neither Activetask.jsx nor ComplededTask.jsx rendered a heading. With no labels and no styling, the completed list appearing directly below the active list was visually indistinguishable from "nothing happened" — easy to miss, especially when the active list becomes empty at the same time.
 
-### corrected code:
+# corrected code:
 
 Added a heading to each list so the two sections are clearly separated:
 
@@ -701,7 +689,7 @@ javascript// Activetask.jsx
     <ul>...</ul>
 </div>
 
-### sloved edge cases:
+# sloved edge cases:
 
 [BUG-01] No visual separation between active and completed task lists
   Before: both <ul> lists rendered back-to-back with no heading/label and no CSS
@@ -713,7 +701,7 @@ STATUS: No functional/state bug existed. Fixed the visual clarity issue with sec
 verified with a Playwright script that a task correctly moves from "Active Tasks" to
 "Completed Tasks" on click.
 
-### what i changed next (styling):
+# what i changed next (styling):
 
 Followed up by generating a full creative CSS design for the project (glassmorphism card,
 animated gradient background, gradient header text, pill-shaped input, green "Finish" /
@@ -723,26 +711,24 @@ Header.jsx, Addtask.jsx, Activetask.jsx, ComplededTask.jsx and Footer.jsx to sup
 new styles, and wrote the design into App.css. Verified visually with Playwright screenshots
 of the empty and populated states — no console errors.
 
-# movie-search-app
-
-## 12/07/2026
+## debug the code (movie-search-app) date 12/07/2026
 
 
-### Movie Search App - Debug Summary
+# Movie Search App - Debug Summary
 
-#### Project
+## Project
 
 **Movie Search App (React + Vite + OMDb API)**
 
 ---
 
-### Debug 1: Pagination Does Not Reset on a New Search
+# Debug 1: Pagination Does Not Reset on a New Search
 
-#### Problem
+## Problem
 
 When searching for a movie, navigating to a later page (for example, Page 5), and then searching for a different movie, the application continued requesting the previous page number instead of starting from Page 1.
 
-**Example**
+### Example
 
 1. Search **Batman**
 2. Navigate to **Page 5**
@@ -766,7 +752,7 @@ This sometimes resulted in an empty results list even though movies existed.
 
 ---
 
-#### Root Cause
+## Root Cause
 
 The `page` state still contained the previous page number.
 
@@ -778,7 +764,7 @@ The search function reused this value instead of resetting it.
 
 ---
 
-#### Solution
+## Solution
 
 Reset the page before performing a new search.
 
@@ -789,21 +775,21 @@ await fetchMovies(query, 1);
 
 ---
 
-#### What I Learned
+## What I Learned
 
 Whenever a new search begins, related state such as pagination should be reset to its default value to avoid inconsistent application behavior.
 
 ---
 
-### Debug 2: Broken Movie Posters
+# Debug 2: Broken Movie Posters
 
-#### Problem
+## Problem
 
 Some movies returned by the OMDb API displayed broken image icons.
 
 ---
 
-#### Root Cause
+## Root Cause
 
 The OMDb API sometimes returns:
 
@@ -825,7 +811,7 @@ which produced an invalid image.
 
 ---
 
-#### Solution
+## Solution
 
 Display a placeholder image whenever the API returns `"N/A"`.
 
@@ -842,21 +828,21 @@ Display a placeholder image whenever the API returns `"N/A"`.
 
 ---
 
-#### What I Learned
+## What I Learned
 
 Never assume an API always returns complete or valid data. Always validate API responses and provide fallbacks to improve the user experience.
 
 ---
 
-### Debug 3: Multiple API Requests Triggered
+# Debug 3: Multiple API Requests Triggered
 
-#### Problem
+## Problem
 
 Clicking the **Search** button repeatedly while a request was still loading sent multiple API requests.
 
 ---
 
-#### Root Cause
+## Root Cause
 
 The Search button remained enabled during the API request.
 
@@ -864,11 +850,11 @@ Every click submitted another request before the previous one completed.
 
 ---
 
-#### Solution
+## Solution
 
 Pass the loading state to the `SearchBar` component and disable the Search button while loading.
 
-**App.jsx**
+### App.jsx
 
 ```jsx
 <SearchBar
@@ -879,7 +865,7 @@ Pass the loading state to the `SearchBar` component and disable the Search butto
 />
 ```
 
-**SearchBar.jsx**
+### SearchBar.jsx
 
 ```jsx
 function SearchBar({
@@ -906,7 +892,7 @@ function SearchBar({
 }
 ```
 
-**CSS**
+### CSS
 
 ```css
 .search-button:disabled {
@@ -917,7 +903,7 @@ function SearchBar({
 
 ---
 
-#### What I Learned
+## What I Learned
 
 Disabling actions while asynchronous operations are in progress prevents duplicate requests, improves application performance, and provides a better user experience.
 
@@ -928,7 +914,7 @@ Disabling actions while asynchronous operations are in progress prevents duplica
 
 
 
-### Debugging Summary
+# Debugging Summary
 
 | Debug   | Problem                                | Root Cause                     | Solution                             |
 | ------- | -------------------------------------- | ------------------------------ | ------------------------------------ |
@@ -938,7 +924,7 @@ Disabling actions while asynchronous operations are in progress prevents duplica
 
 ---
 
-### Key Takeaways
+# Key Takeaways
 
 * Reset related state when starting a new operation.
 * Never assume external APIs always return complete or valid data.
@@ -952,28 +938,27 @@ These debugging exercises helped improve the application's reliability, user exp
 
 
 
-# Favorite Cricket Players Project — Debug Notes
+## debug the code (fav-cricket-players-app) date 21/07/2026--------------------------------------------------------------------
+# Favorite Cricket Players MERN Project - Debug Notes
 
-## 21/07/2026
-
-#### Purpose
+## Purpose
 
 This document summarizes the main issues encountered during development
 and how they were resolved.
 
 ------------------------------------------------------------------------
 
-### 1. MongoDB Connection Issues
+# 1. MongoDB Connection Issues
 
-#### Problem
+## Problem
 
 -   MongoDB connection failed.
 
-#### Cause
+## Cause
 
 -   Incorrect MongoDB URI or environment variable configuration.
 
-#### Fix
+## Fix
 
 -   Verified `.env`.
 -   Checked `MONGO_URI`.
@@ -982,33 +967,33 @@ and how they were resolved.
 
 ------------------------------------------------------------------------
 
-### 2. Login Route Error
+# 2. Login Route Error
 
-#### Problem
+## Problem
 
     Cannot GET /api/auth/login
 
-#### Cause
+## Cause
 
 -   Login route was called with `GET` instead of `POST`.
 
-#### Fix
+## Fix
 
 -   Changed the request method to `POST`.
 
 ------------------------------------------------------------------------
 
-### 3. React Router Import Error
+# 3. React Router Import Error
 
-#### Problem
+## Problem
 
 -   Incorrect React Router import caused application failure.
 
-#### Cause
+## Cause
 
 -   Imported an invalid export.
 
-#### Fix
+## Fix
 
 -   Used:
 -   `Routes`
@@ -1016,198 +1001,198 @@ and how they were resolved.
 
 ------------------------------------------------------------------------
 
-### 4. No Routes Matched
+# 4. No Routes Matched
 
-#### Problem
+## Problem
 
     No routes matched location "/"
 
-#### Cause
+## Cause
 
 -   No route existed for `/`.
 
-#### Fix
+## Fix
 
 -   Added a route for `/` or redirected it to `/login`.
 
 ------------------------------------------------------------------------
 
-### 5. White Screen
+# 5. White Screen
 
-#### Problem
+## Problem
 
 -   Application displayed a blank page.
 
-#### Cause
+## Cause
 
 -   Routing configuration problem.
 
-#### Fix
+## Fix
 
 -   Corrected routes and verified `BrowserRouter`.
 
 ------------------------------------------------------------------------
 
-### 6. Dashboard Protection
+# 6. Dashboard Protection
 
-#### Problem
+## Problem
 
 -   Dashboard opened without authentication.
 
-#### Fix
+## Fix
 
 -   Checked JWT in `localStorage`.
 -   Redirected unauthenticated users.
 
 ------------------------------------------------------------------------
 
-### 7. Unauthorized Request
+# 7. Unauthorized Request
 
-#### Problem
+## Problem
 
     401 Unauthorized
 
-#### Cause
+## Cause
 
 -   JWT token was missing.
 
-#### Fix
+## Fix
 
 -   Sent:
 -   `Authorization: Bearer <token>`
 
 ------------------------------------------------------------------------
 
-### 8. JWT Not Stored
+# 8. JWT Not Stored
 
-#### Problem
+## Problem
 
 -   Protected requests failed.
 
-#### Cause
+## Cause
 
 -   Login token was not saved.
 
-#### Fix
+## Fix
 
 -   Stored JWT in `localStorage`.
 
 ------------------------------------------------------------------------
 
-### 9. Enum Validation Error
+# 9. Enum Validation Error
 
-#### Problem
+## Problem
 
     Player validation failed:
     internationalStatus is not a valid enum value
 
-#### Cause
+## Cause
 
 -   Sent a value that didn't match the schema.
 
-#### Fix
+## Fix
 
 -   Used the exact allowed values.
 
 ------------------------------------------------------------------------
 
-### 10. ObjectId Error
+# 10. ObjectId Error
 
-#### Problem
+## Problem
 
     Cast to ObjectId failed for value "undefined"
 
-#### Cause
+## Cause
 
 -   Delete request sent an undefined player ID.
 
-#### Fix
+## Fix
 
 -   Passed `player._id` instead of an undefined value.
 
 ------------------------------------------------------------------------
 
-### 11. Players Not Displaying
+# 11. Players Not Displaying
 
-#### Problem
+## Problem
 
 -   Dashboard loaded but no players appeared.
 
-#### Cause
+## Cause
 
 -   `fetchPlayers()` was never called.
 
-#### Fix
+## Fix
 
 -   Called `fetchPlayers()` inside `useEffect()`.
 
 ------------------------------------------------------------------------
 
-### 12. Player List Not Refreshing
+# 12. Player List Not Refreshing
 
-#### Problem
+## Problem
 
 -   New players appeared only after refreshing.
 
-#### Cause
+## Cause
 
 -   UI state wasn't updated.
 
-#### Fix
+## Fix
 
 -   Called `fetchPlayers()` after successful create/delete/update.
 
 ------------------------------------------------------------------------
 
-### 13. Edit Form Missing Fields
+# 13. Edit Form Missing Fields
 
-#### Problem
+## Problem
 
 -   Only player name and runs could be edited.
 
-#### Cause
+## Cause
 
 -   Edit form did not include strike rate and status.
 
-#### Fix
+## Fix
 
 -   Added inputs for all player fields.
 
 ------------------------------------------------------------------------
 
-### 14. Route Navigation Issue
+# 14. Route Navigation Issue
 
-#### Problem
+## Problem
 
 -   Redirected to a route that did not exist.
 
-#### Cause
+## Cause
 
 -   Used `/login` while app used `/` (or vice versa).
 
-#### Fix
+## Fix
 
 -   Made navigation paths consistent.
 
 ------------------------------------------------------------------------
 
-### 15. JSX Parse Errors
+# 15. JSX Parse Errors
 
-#### Problem
+## Problem
 
 -   Vite reported unexpected token errors.
 
-#### Cause
+## Cause
 
 -   Missing closing JSX tags or invalid JSX structure.
 
-#### Fix
+## Fix
 
 -   Corrected JSX syntax.
 
 ------------------------------------------------------------------------
 
-### Lessons Learned
+# Lessons Learned
 
 -   Read console errors before changing code.
 -   Verify API methods (GET, POST, PUT, DELETE).
@@ -1222,18 +1207,18 @@ and how they were resolved.
 
 ------------------------------------------------------------------------
 
-### Final Result
+# Final Result
 
 Successfully completed a secure MERN CRUD application with
 authentication, authorization, React frontend, Express backend, and
 MongoDB.
 
 
-## 25/07/2026 — day16 greet.test.js
+## debug the code (day16 - greet.test.js) date 25/07/2026 ---------------------------------------
 
-### what i fixed :
+# what i fixed :
 
-#### Problem
+## Problem
 
 Running the test file threw a syntax error instead of executing:
 
@@ -1244,28 +1229,28 @@ SyntaxError: Cannot use import statement outside a module
     ^^^^^^
 ```
 
-#### Cause
+## Cause
 
 `package.json` had `"type": "module"` (Node treats `.js` files as ES modules), but Jest's default runtime is CommonJS-based and had no Babel config to transform `import`/`export` syntax. The `test` script was also still the untouched placeholder (`echo "Error: no test specified" && exit 1`), so `npm test` wasn't even running Jest.
 
-#### Fix
+## Fix
 
 Converted the file pair to CommonJS instead of adding a Babel transform:
 - `greet.js`: `export { greet }` → `module.exports = { greet }`
 - `greet.test.js`: `import { greet } from './greet'` → `const { greet } = require('./greet')`
 - `package.json`: removed `"type": "module"`, set `"test": "jest"`
 
-#### Verified
+## Verified
 
 `npx jest` → 1 passed, 0 failed.
 
 ---
 
-## 25/07/2026 — API tests
+## debug the code (fav-cricket-players-api tests) date 25/07/2026 ---------------------------------------
 
-### 1. Blocked native install scripts
+# 1. Blocked native install scripts
 
-#### Problem
+## Problem
 
 ```
 npm warn allow-scripts 3 packages have install scripts not yet covered by allowScripts:
@@ -1274,35 +1259,35 @@ npm warn allow-scripts   mongodb-memory-server@11.2.0 (postinstall: node ./posti
 npm warn allow-scripts   unrs-resolver@1.12.2 (postinstall: node postinstall.js)
 ```
 
-#### Cause
+## Cause
 
 A script-approval security gate on npm blocked postinstall scripts for newly installed test dependencies by default. Without them, bcrypt has no compiled native binding (breaks `bcrypt.hash`/`compare`, i.e. signup/login) and mongodb-memory-server has no pre-downloaded `mongod` binary (first test run would pause to download it).
 
-#### Fix
+## Fix
 
 Ran `npm approve-scripts bcrypt` and `npm approve-scripts mongodb-memory-server` to compile bcrypt's native binding and pre-fetch the `mongod` binary. Left `unrs-resolver` (a transitive Jest resolver dependency) unapproved as lower stakes.
 
 ---
 
-### 2. Wrong route path in auth.test.js
+# 2. Wrong route path in auth.test.js
 
-#### Problem
+## Problem
 
 Signup/login tests sent requests to `/api/auth/register` and got unexpected status codes back.
 
-#### Cause
+## Cause
 
 The route actually defined in `routes/authRoutes.js` is `POST /signup` (mounted at `/api/auth`), not `/register` — every request 404'd instead of reaching the controller.
 
-#### Fix
+## Fix
 
 Changed all three requests to `/api/auth/signup`.
 
 ---
 
-### 3. Malformed Supertest chain
+# 3. Malformed Supertest chain
 
-#### Problem
+## Problem
 
 ```js
 const res = (await request(app).post('/api/auth/register')).send({ username: 'testuser' })
@@ -1314,11 +1299,11 @@ Threw:
 TypeError: (intermediate value).send is not a function
 ```
 
-#### Cause
+## Cause
 
 `await` was applied before `.send()` was chained. Supertest's `Test` object is thenable, so awaiting it fired the request immediately with an empty body; `.send()` was then called on the already-resolved `Response` object, which has no `.send` method.
 
-#### Fix
+## Fix
 
 Reordered to send the body before awaiting:
 
@@ -1326,15 +1311,15 @@ Reordered to send the body before awaiting:
 const res = await request(app).post('/api/auth/signup').send({ username: 'testuser', email: 'testuser@example.com' })
 ```
 
-#### Verified
+## Verified
 
 `npm test -- auth.test.js` → 4 passed, 0 failed (after fix #2 and #3 together).
 
 ---
 
-### 4. Misleading test name (found during review, not a functional failure)
+# 4. Misleading test name (found during review, not a functional failure)
 
-#### Problem
+## Problem
 
 ```js
 it('returns 201 if auth token is provided', async () => {
@@ -1343,19 +1328,19 @@ it('returns 201 if auth token is provided', async () => {
 })
 ```
 
-#### Cause
+## Cause
 
 `GET /api/players` (`getPlayers` controller) correctly responds `200`, not `201` (`201` is for the `POST` create route). The assertion was right — only the test's description text described the wrong status code.
 
-#### Fix
+## Fix
 
 Flagged for the test to be renamed to `"returns 200 if auth token is provided"`. Test itself already passed (5/5 in the suite), so this was a clarity fix, not a bug fix.
 
 ---
 
-### 5. Duplicate `module.exports` in jest.config.cjs
+# 5. Duplicate `module.exports` in jest.config.cjs
 
-#### Problem
+## Problem
 
 ```js
 module.exports = { testEnvironment: 'node', transform: {}, testTimeout: 20000 };
@@ -1363,33 +1348,33 @@ module.exports = { testEnvironment: 'node', transform: {}, testTimeout: 20000 };
 module.exports = { testEnvironment: 'node', transform: {}, testTimeout: 20000, setupFiles: ['<rootDir>/tests/helpers/setupEnv.js'] };
 ```
 
-#### Cause
+## Cause
 
 Leftover dead code from an earlier edit — two separate `module.exports` assignments in the same file.
 
-#### Fix
+## Fix
 
 Not destructive (the second assignment silently overwrites the first, so Jest still picks up the correct config with `setupFiles`), but flagged to delete the first block for clarity.
 
 ---
 
-### 6. JWT_SECRET undefined in tests (caught before it caused a failure)
+# 6. JWT_SECRET undefined in tests (caught before it caused a failure)
 
-#### Problem
+## Problem
 
 `authmiddle.js` calls `jwt.verify(token, process.env.JWT_SECRET)` — if `JWT_SECRET` is undefined, tokens signed during tests wouldn't verify correctly against protected routes.
 
-#### Cause
+## Cause
 
 `dotenv.config()` was only ever called in `server.js`, which Supertest tests never import (they import `app.js` directly) — so `.env` was never loaded in the test process.
 
-#### Fix
+## Fix
 
 Added `tests/helpers/setupEnv.js` (just `dotenv.config()`) and wired it into Jest via `setupFiles` in `jest.config.cjs`, so the real `.env` (including `JWT_SECRET`) loads before any test file runs.
 
 ---
 
-### Summary
+# Summary
 
 | # | Problem | Root Cause | Fix |
 |---|---------|------------|-----|
@@ -1404,9 +1389,9 @@ STATUS: All functional test failures (SyntaxError, TypeError, 404s) resolved and
 
 ---
 
-## 25/07/2026 — Code Review & Fixes
+## debug the code (fav-cricket-players-api - code review & fixes) date 25/07/2026 ---------------------------------------
 
-### Summary
+# Summary
 
 Follow-up session: ran the full test suite, fixed what it found, then ran a full code review (Bugs / Security / Readability / Duplication) and resolved each finding one at a time, re-testing after every fix.
 
@@ -1424,7 +1409,7 @@ Follow-up session: ran the full test suite, fixed what it found, then ran a full
 | 10 | `Tests cannot be nested` — `auth.test.js` failed to run entirely | A newly-added test got pasted inside another test's callback instead of as a sibling `it()`, also leaving a `describe` nested inside the wrong parent, plus a leftover dangling `});` | Fixed brace placement so the new test and the `login` describe are proper siblings |
 | 11 | Regression: 3 tests that were passing (#8) started failing again after an unrelated cleanup pass | The centralized error-handling middleware added for #7 had gone missing from `app.js` — lost while the file was open/being edited in the IDE | Restored the middleware block, re-verified 26/26 passing |
 
-### Non-bug findings resolved (code quality, not failures)
+# Non-bug findings resolved (code quality, not failures)
 
 - Excessive blank lines inside nearly every function body in `playerController.js` (10 lines of logic spread across 44) and a milder case in `playerRoutes.js` — reformatted both, re-ran tests to confirm no behavior changed.
 - Inconsistent import alias for the same middleware (`authMiddleware` in `app.js` vs `authMiddle` in `playerRoutes.js`) — unified to `authMiddleware` without renaming the underlying `middleware/authmiddle.js` file.
@@ -1433,15 +1418,15 @@ STATUS: All 11 functional issues resolved and verified — final state is 2 test
 
 ---
 
-## 27/07/2026 — CI + Vercel Deploy
+## debug the code (fav-cricket-players-frontend - CI + Vercel deploy) date 27/07/2026 ---------------------------------------
 
-### Summary
+# Summary
 
 First real CI run and first Vercel deployment surfaced a chain of separate issues — lint config gaps, hardcoded URLs, then a multi-layered backend outage (CORS → crashed process → DB whitelist → wrong preview origin) that all presented as the same symptom (login not working), plus a client-side routing gap. Each is a distinct root cause, resolved one at a time.
 
-### 1. CI lint job failing (10 errors, 1 warning)
+# 1. CI lint job failing (10 errors, 1 warning)
 
-#### Problem
+## Problem
 
 ```
 'expect' is not defined        (PlayerForm.test.jsx, app.test.jsx)
@@ -1451,43 +1436,43 @@ First real CI run and first Vercel deployment surfaced a chain of separate issue
 Node.js 20 is deprecated ... actions/checkout@v4, actions/setup-node@v4
 ```
 
-#### Cause
+## Cause
 
 `eslint.config.js` only declared `globals.browser`, so ESLint had no idea `describe`/`it`/`expect` (Vitest) or `global` (Node, used to mock `fetch` in tests) are valid globals in test files — it flagged them as undefined variables. Separately, `App.jsx` still imported `useState` from an earlier version of the component that no longer used it. The Node-20 warning was unrelated to app code — the pinned `@v4` action versions were built against the runner's older Node 20 runtime, which GitHub was deprecating.
 
-#### Fix
+## Fix
 
 - Added a second ESLint config block scoped to `**/*.test.{js,jsx}` with `globals: { ...globals.vitest, ...globals.node }`.
 - Removed the unused `useState` import from `App.jsx`.
 - Bumped `actions/checkout` and `actions/setup-node` from `@v4` to `@v5`.
 
-#### Verified
+## Verified
 
 `npm run lint` clean, `npm test` 20/20 passed.
 
 ---
 
-### 2. `updatePlayer` unused-variable error + missing failure handling
+# 2. `updatePlayer` unused-variable error + missing failure handling
 
-#### Problem
+## Problem
 
 ```
 'data' is assigned a value but never used   (PlayerList.jsx)
 ```
 
-#### Cause
+## Cause
 
 `updatePlayer` awaited and parsed `response.json()` into `data`, but only ever used it on the success path (implicitly, by doing nothing with it) — there was no `else` branch, so on a failed update the user got no feedback and `data` was dead on the failure path, tripping `no-unused-vars`.
 
-#### Fix
+## Fix
 
 Added the missing `else { window.alert(data.message) }` branch, matching the pattern already used in `deletePlayer` — this both fixed the lint error and closed a real UX gap (silent failures on update).
 
 ---
 
-### 3. False-positive `react-hooks/set-state-in-effect` on Dashboard's fetch-on-mount
+# 3. False-positive `react-hooks/set-state-in-effect` on Dashboard's fetch-on-mount
 
-#### Problem
+## Problem
 
 ```
 Error: Calling setState synchronously within an effect can trigger cascading renders
@@ -1495,19 +1480,19 @@ Error: Calling setState synchronously within an effect can trigger cascading ren
   ^^^^^^^^^^^^
 ```
 
-#### Cause
+## Cause
 
 A newer `eslint-plugin-react-hooks` rule flags any effect that calls a function which eventually calls `setState`, even when — as here — the call happens after an `await` inside an async function (`fetchPlayers`), not synchronously. This is the standard, React-docs-sanctioned "fetch data on mount" pattern; the rule doesn't distinguish sync-from-async call graphs cleanly.
 
-#### Fix
+## Fix
 
 Added a scoped `// eslint-disable-next-line react-hooks/set-state-in-effect -- initial data fetch on mount` on the one call site, rather than disabling the rule project-wide.
 
 ---
 
-### 4. Login/Signup/Dashboard hitting `ERR_CONNECTION_REFUSED` after Vercel deploy
+# 4. Login/Signup/Dashboard hitting `ERR_CONNECTION_REFUSED` after Vercel deploy
 
-#### Problem
+## Problem
 
 ```
 Failed to load resource: net::ERR_CONNECTION_REFUSED
@@ -1515,54 +1500,54 @@ Failed to load resource: net::ERR_CONNECTION_REFUSED
 
 Login worked locally but failed immediately after deploying to Vercel.
 
-#### Cause
+## Cause
 
 `Login.jsx`, `Signup.jsx`, and `Dashboard.jsx` still called `fetch("http://localhost:5000/api/...")` directly — only `PlayerForm.jsx`/`PlayerList.jsx` had been switched to `` `${import.meta.env.VITE_API_URL}/...` ``. In the deployed browser, `localhost:5000` refers to the visitor's own machine, which has nothing listening on that port.
 
-#### Fix
+## Fix
 
 Replaced all three hardcoded URLs with `` `${import.meta.env.VITE_API_URL}/...` ``, matching the other two files, and confirmed `VITE_API_URL` was set as a Vercel env var.
 
 ---
 
-### 5. CORS blocked — `No 'Access-Control-Allow-Origin' header`
+# 5. CORS blocked — `No 'Access-Control-Allow-Origin' header`
 
-#### Problem
+## Problem
 
 ```
 Access to fetch at '.../api/auth/login' from origin 'https://frontend-for-fav-cricket.vercel.app'
 has been blocked by CORS policy: ... No 'Access-Control-Allow-Origin' header is present
 ```
 
-#### Cause
+## Cause
 
 The backend (`backend-for-cricket-player/app.js`) already read allowed origins from a `VALID_ORIGINS` env var correctly — but that var was only set in the developer's local `.env`, which Render never reads. Render's own environment didn't have it set yet.
 
-#### Fix
+## Fix
 
 Added `VALID_ORIGINS=http://localhost:5173,https://frontend-for-fav-cricket.vercel.app` directly in Render's dashboard → Environment tab (not a code change).
 
 ---
 
-### 6. Backend crash-looping — `hibernate-wake-error` on every request
+# 6. Backend crash-looping — `hibernate-wake-error` on every request
 
-#### Problem
+## Problem
 
 Fixing #5 didn't help; curling the backend directly returned `503` with header `x-render-routing: hibernate-wake-error` on every retry (not a one-off cold-start delay).
 
-#### Cause
+## Cause
 
 `config/db.js` calls `process.exit(1)` inside its `mongoose.connect` catch block. Render's log confirmed: `MongoDB Connection Failed — Could not connect to any servers in your MongoDB Atlas cluster ... IP that isn't whitelisted`. The whole Node process was dying on every boot before it could ever serve a request (or send CORS headers), which is why the symptom still looked like a CORS failure.
 
-#### Fix
+## Fix
 
 In MongoDB Atlas → Network Access → Add IP Address → **Allow Access from Anywhere** (`0.0.0.0/0`), since Render's free tier uses dynamic IPs that can't be individually whitelisted. Dashboard setting, not a code change.
 
 ---
 
-### 7. `TypeError [ERR_INVALID_CHAR]` crashing the CORS middleware itself
+# 7. `TypeError [ERR_INVALID_CHAR]` crashing the CORS middleware itself
 
-#### Problem
+## Problem
 
 ```
 TypeError [ERR_INVALID_CHAR]: Invalid character in header content ["Access-Control-Allow-Origin"]
@@ -1572,7 +1557,7 @@ TypeError [ERR_INVALID_CHAR]: Invalid character in header content ["Access-Contr
 
 MongoDB was now connecting fine, but every request still crashed the process.
 
-#### Cause
+## Cause
 
 ```js
 const allowedOrigins = process.env.VALID_ORIGINS?.split(",").map((o) => o.trim()) ?? [];
@@ -1580,7 +1565,7 @@ const allowedOrigins = process.env.VALID_ORIGINS?.split(",").map((o) => o.trim()
 
 `.trim()` only strips whitespace from the *edges* of each string — an embedded newline or stray whitespace in the middle of an origin (from how the value was pasted into Render's env var UI) survived into the array. When the `cors` package echoed that value back as the `Access-Control-Allow-Origin` header, Node's `http.ServerResponse.setHeader` rejects control characters like `\n`/`\r` in header values and threw, which was unhandled and killed the process on every single request.
 
-#### Fix
+## Fix
 
 ```js
 const allowedOrigins =
@@ -1591,36 +1576,36 @@ const allowedOrigins =
 
 ---
 
-### 8. CORS blocked from a Vercel branch-preview URL
+# 8. CORS blocked from a Vercel branch-preview URL
 
-#### Problem
+## Problem
 
 ```
 Access to fetch ... from origin 'https://frontend-for-fav-cricket-git-main-rockybhai42s-projects.vercel.app'
 has been blocked by CORS policy ...
 ```
 
-#### Cause
+## Cause
 
 Vercel generates several URLs per deployment — a production domain and per-branch preview URLs (`<project>-git-<branch>-<team>.vercel.app`). The user was testing via the branch-preview URL, which wasn't in `VALID_ORIGINS` (only the production domain was) — correctly rejected by design, not a bug.
 
-#### Fix
+## Fix
 
 Confirmed with the user which URL was intended; either use the production URL directly, or add the preview URL to `VALID_ORIGINS` too.
 
 ---
 
-### 9. 404 on page refresh (client-side routes)
+# 9. 404 on page refresh (client-side routes)
 
-#### Problem
+## Problem
 
 Refreshing the app while on `/dashboard` (or any non-root route) returned `404` instead of the page.
 
-#### Cause
+## Cause
 
 Vercel serves the built frontend as static files. React Router handles `/dashboard` entirely client-side — but on a hard refresh, the browser requests `/dashboard` directly from Vercel's server, which only has `index.html` and the built asset files on disk; no such path exists server-side.
 
-#### Fix
+## Fix
 
 Added `vercel.json`:
 
@@ -1632,23 +1617,23 @@ This makes Vercel serve `index.html` for every path, letting React Router take o
 
 ---
 
-### 10. Logout button overlapping the dashboard title on small screens (found while adding responsive media queries)
+# 10. Logout button overlapping the dashboard title on small screens (found while adding responsive media queries)
 
-#### Problem
+## Problem
 
 `.logout-btn` was `position: absolute; top: 24px; right: 24px;` while `<h1>` was independently centered — on narrow viewports the centered title text could run underneath the absolutely-positioned button.
 
-#### Cause
+## Cause
 
 Two independently-positioned elements with no shared layout container — worked by coincidence at desktop widths where there was enough horizontal room, but not guaranteed at any width.
 
-#### Fix
+## Fix
 
 Restructured `Dashboard.jsx` to wrap both in a `.dashboard-header` flex row (`justify-content: space-between`), which on mobile (`≤480px`) switches to `flex-direction: column` so the button stacks cleanly below the title instead of overlapping it. Added matching tablet/mobile breakpoints to `Dashboard.css`, `PlayerList.css` (cards → responsive grid), `PlayerForm.css` (2-column grid at `≥640px`), and `Login.css`/`Signup.css` (tighter padding at `≤480px`). Verified `npm run lint` and `npm test` (20/20) still passed after the JSX change.
 
 ---
 
-### Summary
+# Summary
 
 | # | Problem | Root Cause | Fix |
 |---|---------|------------|-----|
@@ -1669,9 +1654,7 @@ STATUS: All 10 issues resolved and verified — CI green (lint + 20/20 tests), b
 
 # PrepPilot Restaurant Checklist System - Debug Notes
 
-## 28/07/2026 – 31/07/2026
-
-#### Purpose
+## Purpose
 
 This document summarizes the main issues encountered while building,
 testing, and deploying PrepPilot (MERN: Express/MongoDB backend +
@@ -1680,14 +1663,14 @@ dashboard, assignment workflow, and cron-driven reminder notifications).
 
 ---
 
-### 1. Login crashed the entire server on missing email/password
+# 1. Login crashed the entire server on missing email/password
 
-#### Problem
+## Problem
 
 A login request with an empty body (or missing `email`/`password`) didn't
 return a `400` — it took the whole server down.
 
-#### Cause
+## Cause
 
 ```js
 const login = async (req, res) => {
@@ -1703,7 +1686,7 @@ rejects, and since the route handler wasn't wrapped, that rejection was
 rejection by default. Confirmed directly:
 `bcrypt.compare(undefined, hash) → "data and hash arguments required"`.
 
-#### Fix
+## Fix
 
 ```js
 if (!email || !password) {
@@ -1716,16 +1699,16 @@ Later generalized: every controller function across the app was wrapped in
 
 ---
 
-### 2. `authMiddleware.js` — function defined but never exported
+# 2. `authMiddleware.js` — function defined but never exported
 
-#### Problem
+## Problem
 
 ```
 SyntaxError: The requested module '../middleware/authMiddleware.js' does
 not provide an export named 'default'
 ```
 
-#### Cause
+## Cause
 
 ```js
 const protect = (req, res, next) => { ... };
@@ -1734,7 +1717,7 @@ const protect = (req, res, next) => { ... };
 
 The function was fully implemented but the file never actually exported it.
 
-#### Fix
+## Fix
 
 ```js
 export default protect;
@@ -1742,14 +1725,14 @@ export default protect;
 
 ---
 
-### 3. `Checklist.js` and `ChecklistItem.js` — file contents swapped
+# 3. `Checklist.js` and `ChecklistItem.js` — file contents swapped
 
-#### Problem
+## Problem
 
 `ChecklistItem model OK` printed during a manual syntax check, but the
 model was semantically wrong.
 
-#### Cause
+## Cause
 
 The `Checklist` schema code (title/shift/createdBy) had been pasted into
 `ChecklistItem.js` by mistake, registered as `mongoose.model('Checklist', ...)`
@@ -1757,7 +1740,7 @@ from the wrong file — while `Checklist.js` itself was still an empty stub.
 A plain `node -e "import(...)"` syntax check only proves a file parses; it
 doesn't prove the *content* matches the *filename*.
 
-#### Fix
+## Fix
 
 Moved each schema back into its correct file
 (`checklistSchema` → `Checklist.js`, new `checklistItemSchema` →
@@ -1765,9 +1748,9 @@ Moved each schema back into its correct file
 
 ---
 
-### 4. Systemic: no error handling in any controller → any thrown error crashed the server
+# 4. Systemic: no error handling in any controller → any thrown error crashed the server
 
-#### Problem
+## Problem
 
 Sending an invalid `shift` value (`"Afternoon"` instead of `Morning`/`Night`)
 to `POST /checklists` would have crashed the server the same way #1 did —
@@ -1776,7 +1759,7 @@ with a direct check: `Checklist.create({shift:'Afternoon'})` throws a
 Mongoose `ValidationError`, and Express 4 does not auto-catch rejected
 promises from async route handlers.
 
-#### Fix
+## Fix
 
 Wrapped every controller function in `try/catch`, returning a clean `500`
 instead of crashing:
@@ -1797,16 +1780,16 @@ Applied across `authController`, `checklistController`,
 
 ---
 
-### 5. Missing ownership check on `addChecklistItem`
+# 5. Missing ownership check on `addChecklistItem`
 
-#### Problem
+## Problem
 
 Found while building checklist edit/delete: any logged-in manager could
 add an item to **any other manager's** checklist, not just their own —
 the route only checked `authorize('manager')`, never that the checklist
 actually belonged to `req.user.id`.
 
-#### Fix
+## Fix
 
 ```js
 const checklist = await Checklist.findOne({ _id: checklistId, createdBy: req.user.id });
@@ -1818,16 +1801,16 @@ checklist/item update and delete endpoints from the start.
 
 ---
 
-### 6. Frontend: `client.js` and `Login.jsx` silently stayed empty stub files
+# 6. Frontend: `client.js` and `Login.jsx` silently stayed empty stub files
 
-#### Problem
+## Problem
 
 ```
 Uncaught SyntaxError: The requested module '/src/api/client.js' does not
 provide an export named 'default'
 ```
 
-#### Cause
+## Cause
 
 The intended file content had been provided but never actually pasted in
 — both files still contained only their original one-line placeholder
@@ -1835,21 +1818,21 @@ comment. A Vite `curl` check returning `200` only proves the file has
 *valid syntax* (a comment is valid syntax); it says nothing about whether
 the real content is there.
 
-#### Fix
+## Fix
 
 Re-pasted the actual implementation into both files, this time verifying
 with `cat`/`Read` (real file content), not just an HTTP status code.
 
 ---
 
-### 7. `AuthContext.jsx` — `children` prop typo'd as `childern`
+# 7. `AuthContext.jsx` — `children` prop typo'd as `childern`
 
-#### Problem
+## Problem
 
 `ReferenceError: children is not defined` the moment `AuthProvider`
 rendered.
 
-#### Cause
+## Cause
 
 ```jsx
 export const AuthProvider = ({childern}) => {
@@ -1860,7 +1843,7 @@ export const AuthProvider = ({childern}) => {
 Destructured as `childern`, referenced as `children` — two different
 identifiers.
 
-#### Fix
+## Fix
 
 ```jsx
 export const AuthProvider = ({ children }) => {
@@ -1868,13 +1851,13 @@ export const AuthProvider = ({ children }) => {
 
 ---
 
-### 8. `App.jsx` — `BrowseRouter` typo + wrong relative import path
+# 8. `App.jsx` — `BrowseRouter` typo + wrong relative import path
 
-#### Problem
+## Problem
 
 `Element type is invalid` and a failed module resolution, together.
 
-#### Cause
+## Cause
 
 ```jsx
 import {BrowseRouter} from "react-router-dom";           // no such export
@@ -1885,7 +1868,7 @@ import { AuthProvider } from "../context/AuthContext.jsx"; // wrong: goes up a l
 from `src/App.jsx`, `AuthContext.jsx` lives *down* in `src/context/`, not
 up a level — `../context/...` resolved to a nonexistent path outside `src/`.
 
-#### Fix
+## Fix
 
 ```jsx
 import { BrowserRouter } from "react-router-dom";
@@ -1894,21 +1877,21 @@ import { AuthProvider } from "./context/AuthContext.jsx";
 
 ---
 
-### 9. Worker's checked-off tasks reset to unchecked after refresh or logout/login
+# 9. Worker's checked-off tasks reset to unchecked after refresh or logout/login
 
-#### Problem
+## Problem
 
 A worker would check off tasks, but on any page reload (including a
 logout → login cycle) the checkboxes — and the progress bar — reset to
 0%, even for a checklist the server already recorded as `Completed`.
 
-#### Cause
+## Cause
 
 Per-item checkbox state (`checkedTasks`) lived only in local React
 `useState`, never persisted anywhere. The backend's `Assignment` model
 only tracks one status for the *whole* checklist, not per-item completion.
 
-#### Fix (two-stage)
+## Fix (two-stage)
 
 1. Quick fix: when `assignment.status === 'Completed'`, force the progress
    bar and each checkbox to render as 100%/checked regardless of local
@@ -1927,14 +1910,14 @@ documented tradeoff, not a bug.
 
 ---
 
-### 10. Cron reminder jobs had no error handling
+# 10. Cron reminder jobs had no error handling
 
-#### Problem
+## Problem
 
 Found via code review, not a live incident: the 3PM/10PM `node-cron`
 callbacks called an `async` function but never caught its rejection.
 
-#### Cause
+## Cause
 
 ```js
 cron.schedule('0 15 * * *', () => flagIncomplete('Morning', 'Overdue'));
@@ -1945,7 +1928,7 @@ If `flagIncomplete` ever rejected (e.g. a transient DB hiccup at exactly
 — worse than a normal request failure, since there's no client request to
 return an error to, and it would also kill the 10PM job for that day.
 
-#### Fix
+## Fix
 
 ```js
 cron.schedule('0 15 * * *', () => {
@@ -1955,15 +1938,15 @@ cron.schedule('0 15 * * *', () => {
 
 ---
 
-### 11. Cron reminders would fire at the wrong wall-clock time after deployment
+# 11. Cron reminders would fire at the wrong wall-clock time after deployment
 
-#### Problem
+## Problem
 
 `node-cron` runs in the server process's local timezone by default —
 fine locally, but cloud hosts (Render/Railway) default to UTC. "3:00 PM"
 would have meant 3PM UTC, not 3PM at the restaurant.
 
-#### Fix
+## Fix
 
 ```js
 cron.schedule('0 15 * * *', fn, { timezone: 'Asia/Kolkata' });
@@ -1973,22 +1956,22 @@ Pinned explicitly rather than relying on the host's default.
 
 ---
 
-### 12. Date-matching used UTC, causing a real IST midnight edge case
+# 12. Date-matching used UTC, causing a real IST midnight edge case
 
-#### Problem
+## Problem
 
 Assignment creation, the worker's "today" view, and the cron date filter
 all computed "today" from UTC. Between midnight and 5:29 AM IST, UTC is
 still on the *previous* calendar day — an assignment created in that
 window would be dated "yesterday."
 
-#### Cause
+## Cause
 
 ```js
 const todayString = () => new Date().toISOString().slice(0, 10); // UTC date
 ```
 
-#### Fix
+## Fix
 
 Single shared utility using the actual target timezone:
 
@@ -2006,15 +1989,15 @@ files, two test files) with this one shared module.
 
 ---
 
-### 13. Manager dashboard status badge misaligned against wrapped text
+# 13. Manager dashboard status badge misaligned against wrapped text
 
-#### Problem
+## Problem
 
 The status badge next to "Bob Worker — for flooor cleanig" floated in the
 middle of two-to-three wrapped lines of text instead of lining up with
 the first line.
 
-#### Cause
+## Cause
 
 ```css
 .overview-column li {
@@ -2023,7 +2006,7 @@ the first line.
 }
 ```
 
-#### Fix
+## Fix
 
 ```css
 .overview-column li {
@@ -2040,9 +2023,9 @@ title on separate lines) rather than one run-on wrapped line.
 
 ---
 
-### 14. Render deploy crash: invalid `MONGO_URI`
+# 14. Render deploy crash: invalid `MONGO_URI`
 
-#### Problem
+## Problem
 
 ```
 MongoParseError: Invalid scheme, expected connection string to start
@@ -2051,13 +2034,13 @@ with "mongodb://" or "mongodb+srv://"
 
 Build succeeded; the app crashed immediately on start.
 
-#### Cause
+## Cause
 
 The `MONGO_URI` environment variable set in Render's dashboard wasn't a
 valid connection string (leftover placeholder text / a mangled paste),
 purely an environment-config issue, not a code bug.
 
-#### Fix
+## Fix
 
 Re-copied the real connection string fresh from Atlas → Connect →
 Drivers, replaced `<password>` with the actual DB user password, saved it
@@ -2065,9 +2048,9 @@ as `MONGO_URI` in Render's Environment tab.
 
 ---
 
-### 15. GitHub Actions CI: `npm ci` failing on the frontend job
+# 15. GitHub Actions CI: `npm ci` failing on the frontend job
 
-#### Problem
+## Problem
 
 ```
 npm error `npm ci` can only install packages when your package.json and
@@ -2078,7 +2061,7 @@ npm error Missing: esbuild@0.28.1 from lock file
 Backend job passed every time; only the frontend job failed, repeatedly,
 even after two attempts to "fix" the lockfile.
 
-#### Cause (the real one, found on the third attempt)
+## Cause (the real one, found on the third attempt)
 
 `esbuild` wasn't pinned to an exact version anywhere in the dependency
 tree — it came in transitively (via Vitest), resolved by a loose semver
@@ -2091,7 +2074,7 @@ same reason. (Also separately bumped CI's Node version — `20` → `22` —
 to satisfy `@testing-library/jest-dom@7`'s engine requirement, which was
 a real warning but not the actual failure cause.)
 
-#### Fix
+## Fix
 
 ```json
 "overrides": { "esbuild": "0.21.5" }
@@ -2106,9 +2089,9 @@ deterministic, not the lockfile content.
 
 ---
 
-### 16. 404 on browser refresh for any client-side route (Vercel)
+# 16. 404 on browser refresh for any client-side route (Vercel)
 
-#### Problem
+## Problem
 
 ```
 404: NOT_FOUND
@@ -2118,12 +2101,12 @@ Code: NOT_FOUND
 Refreshing on `/manager`, `/worker`, etc. — any route that only exists
 inside React Router — returned Vercel's 404 page instead of the app.
 
-#### Cause
+## Cause
 
 Vercel serves the build as static files; there's no real file/route at
 `/manager` on disk, only `index.html` and the bundled assets.
 
-#### Fix
+## Fix
 
 `frontend/vercel.json`:
 
@@ -2136,7 +2119,7 @@ Verified by curling every route directly post-deploy
 
 ---
 
-### Summary
+# Summary
 
 | # | Problem | Root Cause | Fix |
 |---|---------|------------|-----|
